@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Yazarlar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #FAF3E0;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        .header-container {
+            margin-bottom: 20px;
+        }
+
+        .header-container .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 0;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #8B4513;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .button-group button:hover {
+            background-color: #A0522D;
+        }
+
+        .add-button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #8B4513;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .add-button:hover {
+            background-color: #A0522D;
+        }
+
+        .btn-success {
+            background-color: #8B4513;
+            color: white;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .btn-success:hover {
+            background-color: #A0522D;
+        }
+
+        table th, table td {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <div>
+            <form th:action="@{/home/allbook}">
+                <button class="add-button" type="submit">Ana Sayfa</button>
+            </form>
+        </div>
+        <div class="main-header">
+            <h1>Yazarlar</h1>
+            <form th:action="@{/authors/addauthor}">
+                <button class="add-button" type="submit">Yazar Ekle</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Yazar Adı</th>
+                <th>Açıklama</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="author:${authors}">
+                <td th:text="${author.id}" class="font-weight-bold"></td>
+                <td th:text="${author.author}"></td>
+                <td th:text="${author.description}"></td>
+                <td>
+                    <form th:action="@{'/authors/update/' + ${author.id}}" method="get">
+                        <button type="submit" class="btn btn-success">Güncelle</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

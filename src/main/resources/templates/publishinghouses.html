@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Yayın Evleri</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #FAF3E0;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        h1 {
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .header-container {
+            margin-bottom: 20px;
+        }
+
+        .header-container .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .button-group button, .add-button, .btn-success {
+            padding: 10px 20px;
+            border: none;
+            background-color: #8B4513;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .button-group button:hover, .add-button:hover, .btn-success:hover {
+            background-color: #A0522D;
+        }
+
+        table th, table td {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <div>
+            <form th:action="@{/home/allbook}">
+                <button class="add-button" type="submit">Ana Sayfa</button>
+            </form>
+        </div>
+        <div class="main-header">
+            <h1>Yayın Evleri</h1>
+            <form th:action="@{/houses/addhouse}">
+                <button class="add-button" type="submit">Yayın Evi Ekle</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Yayın Evi Adı</th>
+                <th>Açıklama</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="ph:${phs}">
+                <td th:text="${ph.id}" class="font-weight-bold"></td>
+                <td th:text="${ph.publishingHouses}"></td>
+                <td th:text="${ph.description}"></td>
+                <td>
+                    <form th:action="@{'/houses/update/' + ${ph.id}}" method="get">
+                        <button type="submit" class="btn btn-success">Güncelle</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

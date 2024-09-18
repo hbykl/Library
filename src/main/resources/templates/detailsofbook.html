@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitap Ayrıntıları</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #FAF3E0;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        h1 {
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .header-container {
+            margin-bottom: 20px;
+        }
+
+        .button-group button, .add-button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #8B4513;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .button-group button:hover, .add-button:hover {
+            background-color: #A0522D;
+        }
+
+        table th, table td {
+            vertical-align: middle;
+        }
+
+        table th {
+            font-weight: bold;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <form th:action="@{/home/allbook}">
+            <button class="add-button" type="submit">Ana Sayfa</button>
+        </form>
+    </div>
+
+    <h1>Kitap Ayrıntıları</h1>
+
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+            <tr>
+                <th>ISBN</th>
+                <th>Kitap Adı</th>
+                <th>Kitap Alt Adı</th>
+                <th>Seri Adı</th>
+                <th>Yazar</th>
+                <th>Yayınevi</th>
+                <th>Açıklama</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${book.isbn}" class="font-weight-bold"></td>
+                <td th:text="${book.bookName}"></td>
+                <td th:text="${book.subtitle}"></td>
+                <td th:text="${book.seriesName}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.publishingHouse}"></td>
+                <td th:text="${book.description}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

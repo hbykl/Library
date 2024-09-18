@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitap Güncelle</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #FAF3E0;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        h1 {
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #8B4513;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .submit-button:hover {
+            background-color: #A0522D;
+        }
+
+        .error {
+            font-style: italic;
+            color: rgba(255, 0, 0, 0.58);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Kitap Güncelle</h1>
+
+    <form th:action="@{/home/updateBook}" th:object="${updateBook}" method="post">
+        <div class="form-group">
+            <label for="isbn">ISBN:
+                <span th:if="${#fields.hasErrors('isbn')}"
+                th:errors="*{isbn}"
+                class="error">
+                </span>
+            </label>
+            <input th:field="*{isbn}" type="number" id="isbn" name="isbn" readonly>
+        </div>
+        <div class="form-group">
+            <label for="bookName">Kitap Adı:
+                <span th:if="${#fields.hasErrors('bookName')}"
+                              th:errors="*{bookName}"
+                              class="error">
+                </span>
+            </label>
+            <input th:field="*{bookName}" type="text" id="bookName" name="bookName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="subtitle">Alt Başlık:</label>
+            <input th:field="*{subtitle}" type="text" id="subtitle" name="subtitle">
+        </div>
+
+        <div class="form-group">
+            <label for="seriesName">Seri Adı:</label>
+            <input th:field="*{seriesName}" type="text" id="seriesName" name="seriesName">
+        </div>
+
+        <div class="form-group">
+            <label for="author">Yazar:
+                <span th:if="${#fields.hasErrors('author')}"
+                th:errors="*{author}"
+                class="error">
+                </span>
+            </label>
+            <input th:field="*{author}" type="text" id="author" name="author" required>
+        </div>
+
+        <div class="form-group">
+            <label for="publishingHouse">Yayınevi:
+                <span th:if="${#fields.hasErrors('publishingHouse')}"
+                th:errors="*{publishingHouse}"
+                class="error">
+                </span>
+            </label>
+            <input th:field="*{publishingHouse}" type="text" id="publishingHouse" name="publishingHouse" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Açıklama:</label>
+            <textarea th:field="*{description}" id="description" name="description" rows="4"></textarea>
+        </div>
+
+        <button type="submit" class="submit-button">Güncelle</button>
+    </form>
+
+</body>
+</html>
